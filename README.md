@@ -1,0 +1,2189 @@
+[AntiFraud_MonkeyPon_slot (2).html](https://github.com/user-attachments/files/25315667/AntiFraud_MonkeyPon_slot.2.html)
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AntiFraud Slot 🛡️</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 14px;
+      font-family: system-ui, sans-serif;
+      background: linear-gradient(135deg, #0a0015, #1a0033, #0f0022);
+      color: #e0e0ff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .header {
+      font-size: clamp(2.4rem, 8vw, 4.5rem);
+      color: #aa00ff;
+      text-shadow: 0 0 30px #ff00aa, 0 0 60px #aa00ff;
+      margin: 0 0 14px 0;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    .jackpot-pon {
+      width: min(100%, 1280px);
+      margin: 0 auto 12px auto;
+      padding: 12px 16px;
+      border-radius: 14px;
+      border: 2px solid #d4a23f;
+      background:
+        linear-gradient(140deg, rgba(74,26,10,0.96), rgba(40,14,7,0.98)),
+        repeating-linear-gradient(90deg, rgba(255,220,120,0.08) 0 16px, transparent 16px 32px);
+      box-shadow: inset 0 0 18px rgba(255,215,120,0.2), 0 10px 22px rgba(0,0,0,0.35);
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 14px;
+      animation: jackpotGlow 1.6s ease-in-out infinite;
+      box-sizing: border-box;
+    }
+
+    .jackpot-pon-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .jackpot-pon-title {
+      font-size: clamp(1rem, 2.4vw, 1.45rem);
+      font-weight: 900;
+      color: #ffd772;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-shadow: 0 0 10px rgba(255,197,64,0.5);
+    }
+
+    .jackpot-pon-photo {
+      width: clamp(120px, 18vw, 190px);
+      height: clamp(44px, 7vw, 70px);
+      object-fit: cover;
+      border-radius: 10px;
+      border: 2px solid #d7a446;
+      box-shadow: 0 0 10px rgba(215,164,70,0.32);
+      flex: 0 0 auto;
+    }
+
+    .jackpot-pon-value {
+      font-size: clamp(1.25rem, 3.3vw, 2rem);
+      font-weight: 900;
+      color: #fff2bb;
+      text-shadow: 0 0 14px rgba(255,216,120,0.6);
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+      margin-left: 6px;
+    }
+
+    @keyframes jackpotGlow {
+      0%, 100% { box-shadow: inset 0 0 18px rgba(255,215,120,0.2), 0 10px 22px rgba(0,0,0,0.35); }
+      50% { box-shadow: inset 0 0 24px rgba(255,226,150,0.34), 0 12px 28px rgba(0,0,0,0.42); }
+    }
+
+    .game-container {
+      width: min(100%, 1280px);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: stretch;
+      box-sizing: border-box;
+    }
+
+    .gates-layout {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 14px;
+      align-items: stretch;
+      min-height: 620px;
+      background: linear-gradient(180deg, #cc91df, #f5d1a4 64%, #5b3a28 64%, #2d1a14 100%);
+      border-radius: 18px;
+      padding: 14px;
+      box-shadow: inset 0 0 90px rgba(255,255,255,0.2), 0 20px 40px rgba(0,0,0,0.35);
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    .gates-layout .side-panel:last-child {
+      display: none;
+    }
+
+    .side-panel {
+      background: linear-gradient(180deg, #f8e2a8, #c99543);
+      border: 4px solid #9f6c1d;
+      border-radius: 14px;
+      box-shadow: inset 0 0 18px rgba(255,255,255,0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #4a2300;
+      font-weight: 700;
+      padding: 10px;
+    }
+
+    .bonus-panel {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .bonus-buy-btn {
+      width: 100%;
+      padding: 12px 8px;
+      border-radius: 12px;
+      border: 2px solid #b17613;
+      background: linear-gradient(180deg, #ffe38f, #d69b33);
+      color: #3b1b00;
+      font-weight: 900;
+      font-size: 1rem;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.45), 0 8px 14px rgba(0,0,0,0.28);
+      transition: transform 0.15s ease, filter 0.15s ease;
+    }
+
+    .bonus-buy-btn:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.05);
+    }
+
+    .bonus-buy-btn:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+      transform: none;
+      filter: grayscale(0.2);
+    }
+
+    .bonus-buy-price {
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: #5a2d02;
+      text-align: center;
+      line-height: 1.25;
+    }
+
+    .board-wrap {
+      display: grid;
+      grid-template-rows: auto 1fr;
+      gap: 8px;
+      min-width: 0;
+      overflow: hidden;
+      height: 100%;
+    }
+
+    .board-title {
+      text-align: center;
+      color: #ffe67a;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-shadow: 0 2px 4px rgba(60,20,10,0.9);
+      font-size: clamp(1rem, 1.8vw, 1.45rem);
+      text-transform: uppercase;
+      visibility: hidden;
+    }
+
+    .tv-frame {
+      width: min(100%, 1520px);
+      background: linear-gradient(170deg, #2c2c2f, #111114 55%, #1b1b20);
+      border: 4px solid #45464d;
+      border-radius: 8px;
+      box-shadow: 0 22px 40px rgba(0,0,0,0.62), inset 0 0 20px rgba(255,255,255,0.05);
+      padding: clamp(10px, 1.5vw, 18px);
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 5fr) minmax(120px, 1fr);
+      gap: clamp(10px, 1.1vw, 16px);
+    }
+
+    .tv-frame::before {
+      content: "";
+      position: absolute;
+      inset: 6px;
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 5px;
+      pointer-events: none;
+    }
+
+    .tv-screen {
+      background: radial-gradient(circle at 50% 46%, #1a2238 0%, #06080f 68%, #03040a 100%);
+      border: 8px solid #0b0c12;
+      border-radius: 32px;
+      box-shadow: inset 0 0 46px rgba(0,0,0,0.9), inset 0 0 80px rgba(85,110,170,0.12);
+      padding: clamp(8px, 0.8vw, 12px);
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 4 / 3;
+      min-height: 0;
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+    }
+
+    .tv-screen::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.14), rgba(255,255,255,0.02) 22%, transparent 58%),
+        repeating-linear-gradient(180deg, rgba(255,255,255,0.035) 0 1px, transparent 1px 3px);
+      pointer-events: none;
+    }
+
+    .tv-side {
+      border: 3px solid #0f1016;
+      border-radius: 4px;
+      background: linear-gradient(180deg, #1a1b20, #0d0e13);
+      padding: 8px;
+      display: grid;
+      grid-template-rows: 1fr auto;
+      gap: 10px;
+    }
+
+    .tv-speaker {
+      border: 2px solid #111318;
+      border-radius: 4px;
+      background: repeating-linear-gradient(
+        180deg,
+        #0b0c10 0 2px,
+        #2f3138 2px 3px
+      );
+      min-height: 110px;
+    }
+
+    .tv-controls {
+      border: 2px solid #17181e;
+      border-radius: 4px;
+      padding: 8px 6px;
+      background: #111219;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+      align-items: start;
+    }
+
+    .tv-leds {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 4px;
+      border: 1px solid #3f4149;
+      padding: 5px 4px;
+      background: #08090e;
+    }
+
+    .tv-led {
+      height: 8px;
+      border-radius: 2px;
+      background: #4a0d0d;
+      box-shadow: inset 0 0 3px rgba(0,0,0,0.65);
+    }
+
+    .tv-led:nth-child(3n) {
+      background: #9d1c1c;
+    }
+
+    .tv-knobs {
+      display: grid;
+      gap: 6px;
+      justify-items: center;
+    }
+
+    .tv-knob {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 1px solid #60636d;
+      background: radial-gradient(circle at 30% 30%, #7f838e, #2d3038 65%);
+      box-shadow: inset 0 0 3px rgba(0,0,0,0.75);
+    }
+
+    .tv-switch {
+      width: 18px;
+      height: 18px;
+      border: 1px solid #60636d;
+      border-radius: 2px;
+      background: linear-gradient(145deg, #444853, #22252c);
+    }
+
+    .tv-stand {
+      width: 76%;
+      justify-self: center;
+      background: linear-gradient(165deg, #71553f, #4a3528);
+      border: 4px solid #3a271c;
+      border-radius: 8px;
+      padding: 10px 12px 12px;
+      box-shadow: 0 12px 22px rgba(0,0,0,0.46), inset 0 0 0 1px rgba(255,218,170,0.2);
+      position: relative;
+    }
+
+    .tv-stand::after {
+      content: "";
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      top: 50%;
+      height: 2px;
+      background: rgba(255, 225, 194, 0.22);
+    }
+
+    .big-gamepad {
+      position: absolute;
+      left: 16px;
+      bottom: -210px;
+      width: clamp(320px, 44vw, 620px);
+      height: clamp(120px, 16vw, 220px);
+      background: linear-gradient(180deg, #5d6168, #464a50);
+      border: clamp(4px, 0.45vw, 7px) solid #5f636a;
+      border-radius: clamp(16px, 1.8vw, 24px);
+      box-shadow: 0 15px 28px rgba(0,0,0,0.45);
+      z-index: 4;
+      padding: clamp(10px, 1vw, 14px);
+    }
+
+    .big-gamepad::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: -64px;
+      transform: translateX(-50%);
+      width: 16px;
+      height: 70px;
+      border-radius: 10px;
+      background: linear-gradient(180deg, #171a1f, #0a0d12);
+      box-shadow: inset 0 0 3px rgba(255,255,255,0.12);
+    }
+
+    .pad-face {
+      position: absolute;
+      inset: 8px;
+      border-radius: clamp(12px, 1.2vw, 18px);
+      background: linear-gradient(95deg, #f6f7f9, #eceef2);
+      border: 1px solid rgba(33,33,33,0.26);
+      overflow: hidden;
+    }
+
+    .pad-face::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 22px;
+      height: 2px;
+      background: #303944;
+      box-shadow: 0 6px 0 #303944;
+      opacity: 0.85;
+    }
+
+    .pad-brand {
+      position: absolute;
+      left: 16px;
+      top: 8px;
+      font-size: clamp(11px, 1.1vw, 18px);
+      color: #ad0f0f;
+      font-style: italic;
+      font-weight: 700;
+      text-transform: uppercase;
+      line-height: 1;
+      z-index: 2;
+    }
+
+    .pad-brand small {
+      display: block;
+      margin-top: 2px;
+    }
+
+    .pad-dpad {
+      position: absolute;
+      left: 18px;
+      bottom: 18px;
+      width: 62px;
+      height: 62px;
+      background: linear-gradient(180deg, #ff5a5a, #cf1717);
+      border-radius: 6px;
+      border: 1px solid #8f1010;
+      box-shadow: inset 0 1px 3px rgba(255,255,255,0.28), 0 2px 5px rgba(0,0,0,0.35);
+      z-index: 2;
+    }
+
+    .pad-dpad::before,
+    .pad-dpad::after {
+      content: "";
+      position: absolute;
+      background: linear-gradient(180deg, #ff5a5a, #cf1717);
+      border-radius: 6px;
+      border: 1px solid #8f1010;
+      box-shadow: inset 0 1px 3px rgba(255,255,255,0.28);
+    }
+
+    .pad-dpad::before {
+      left: 18px;
+      top: -18px;
+      width: 26px;
+      height: 98px;
+    }
+
+    .pad-dpad::after {
+      left: -18px;
+      top: 18px;
+      width: 98px;
+      height: 26px;
+    }
+
+    .pad-turbo {
+      position: absolute;
+      right: 22px;
+      top: 16px;
+      width: 104px;
+      height: 40px;
+      border-radius: 24px;
+      border: 2px solid #2d3138;
+      background: #4a4e56;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+    }
+
+    .pad-red {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #ff6262, #c51515 72%);
+      box-shadow: inset 0 0 6px rgba(0,0,0,0.35);
+    }
+
+    .pad-turbo-label {
+      position: absolute;
+      right: 40px;
+      top: 2px;
+      font-size: 11px;
+      color: #ff6f6f;
+      letter-spacing: 0.06em;
+      z-index: 2;
+    }
+
+    .pad-mid {
+      position: absolute;
+      left: 42%;
+      transform: translateX(-50%);
+      bottom: 28px;
+      width: 118px;
+      height: 34px;
+      border-radius: 18px;
+      background: #6f737b;
+      border: 1px solid #555a61;
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      z-index: 2;
+    }
+
+    .pad-mid i {
+      width: 34px;
+      height: 14px;
+      border-radius: 9px;
+      background: #3c4047;
+      box-shadow: inset 0 0 4px rgba(0,0,0,0.6);
+    }
+
+    .pad-mid-labels {
+      position: absolute;
+      left: 42%;
+      transform: translateX(-50%);
+      bottom: 66px;
+      width: 126px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: #757b84;
+      z-index: 2;
+    }
+
+    .gamepad-spin {
+      position: absolute;
+      left: 50%;
+      bottom: 14px;
+      transform: translateX(-50%);
+      width: clamp(92px, 10vw, 150px);
+      height: clamp(28px, 3.2vw, 42px);
+      border: 1px solid #6f747d;
+      border-radius: 18px;
+      background: linear-gradient(180deg, #2c3139, #15181d);
+      color: #f3f5f8;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      font-size: clamp(12px, 1vw, 16px);
+      cursor: pointer;
+      z-index: 3;
+    }
+
+    .gamepad-spin:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .pad-ba {
+      position: absolute;
+      right: 28px;
+      bottom: 20px;
+      display: flex;
+      gap: 12px;
+      z-index: 2;
+    }
+
+    .pad-black {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #2d3238, #07090c 72%);
+      box-shadow: inset 0 0 6px rgba(255,255,255,0.08);
+    }
+
+    .pad-ba-label {
+      position: absolute;
+      right: 64px;
+      bottom: 58px;
+      background: #0c1f40;
+      color: #fff;
+      border-radius: 14px;
+      padding: 2px 8px;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      z-index: 2;
+    }
+
+    .dendy-console {
+      width: 100%;
+      max-width: 360px;
+      justify-self: start;
+      align-self: start;
+      margin-top: 14px;
+      background: linear-gradient(180deg, #e4e5e8 0%, #cbced3 68%, #8f939c 69%, #1e2128 100%);
+      border: 2px solid #8f939c;
+      border-radius: 18px 18px 14px 14px;
+      padding: 40px 14px 16px;
+      position: relative;
+      box-shadow: 0 14px 28px rgba(0,0,0,0.45);
+      transform: perspective(700px) rotateX(10deg);
+      transform-origin: center bottom;
+    }
+
+    .dendy-wire {
+      position: absolute;
+      width: 120px;
+      height: 12px;
+      border-radius: 8px;
+      background: #121318;
+      left: -98px;
+      top: 110px;
+      transform: rotate(-8deg);
+      box-shadow: inset 0 0 3px rgba(255,255,255,0.1);
+    }
+
+    .cartridge-slot {
+      position: absolute;
+      top: 6px;
+      left: 62px;
+      right: 62px;
+      height: 20px;
+      background: #575a62;
+      border: 2px solid #8f939b;
+      border-radius: 4px;
+    }
+
+    .cartridge {
+      position: absolute;
+      top: -30px;
+      left: 76px;
+      width: 116px;
+      height: 38px;
+      background: linear-gradient(180deg, #ff951f, #f57600);
+      border: 2px solid #cc5f00;
+      border-radius: 4px 4px 2px 2px;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.35);
+    }
+
+    .cartridge::after {
+      content: "BATTLETOADS";
+      position: absolute;
+      inset: 9px 10px auto;
+      font-size: 0.6rem;
+      color: #2c1c08;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+    }
+
+    .dendy-label {
+      background: #404651;
+      border: 1px solid #9da4ad;
+      border-radius: 5px;
+      color: #e8ebee;
+      padding: 6px 8px;
+      font-size: 0.78rem;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .dendy-buttons {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .dendy-btn {
+      text-align: center;
+      font-size: 0.62rem;
+      color: #1f232b;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .dendy-btn i {
+      display: block;
+      margin-top: 3px;
+      height: 18px;
+      border-radius: 4px;
+      background: linear-gradient(180deg, #3a3d43, #0f1015);
+      border: 1px solid #666b74;
+    }
+
+
+    .reels {
+      --reel-w: calc((100% - 30px) / 6);
+      display: flex;
+      gap: 6px;
+      background: linear-gradient(180deg, #4e1a67, #2b103e);
+      padding: 14px;
+      border: 6px solid #d6a53f;
+      border-radius: 14px;
+      box-shadow: inset 0 0 20px rgba(255,255,255,0.18), 0 8px 20px rgba(0,0,0,0.35);
+      overflow: hidden;
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+      justify-content: center;
+      align-items: stretch;
+      position: relative;
+      min-height: 0;
+      height: 100%;
+    }
+
+    .reel {
+      flex: none;
+      width: var(--reel-w);
+      height: 100%;
+      overflow: hidden;
+      position: relative;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      border-left: 1px solid rgba(255,255,255,0.18);
+      border-right: 1px solid rgba(0,0,0,0.4);
+    }
+
+    .symbols {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      will-change: transform;
+    }
+
+    .symbols.spinning {
+      filter: blur(1.05px) saturate(1.1);
+    }
+
+    .cell {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      overflow: hidden;
+      transition: transform 0.2s ease, filter 0.2s ease, background 0.2s ease;
+    }
+
+    .monkey-icon{
+      --size: 74px;
+      --fur: #8b5a2b;
+      --fur2:#6f421f;
+      --skin:#f2c28b;
+      --eye:#111;
+      --highlight: rgba(255,255,255,.35);
+      width: var(--size);
+      height: var(--size);
+      position: relative;
+      display: inline-block;
+      border-radius: 22%;
+      overflow: hidden;
+      box-shadow: 0 8px 14px rgba(0,0,0,.24);
+      background:
+        radial-gradient(65% 65% at 50% 50%, var(--fur) 0 55%, transparent 57%),
+        radial-gradient(58% 52% at 50% 56%, var(--skin) 0 52%, transparent 54%),
+        radial-gradient(18% 14% at 34% 62%, rgba(255,140,140,.25) 0 70%, transparent 72%),
+        radial-gradient(18% 14% at 66% 62%, rgba(255,140,140,.25) 0 70%, transparent 72%),
+        radial-gradient(10% 10% at 38% 46%, #fff 0 85%, transparent 87%),
+        radial-gradient(10% 10% at 62% 46%, #fff 0 85%, transparent 87%),
+        radial-gradient(5% 5% at 39% 47%, var(--eye) 0 90%, transparent 92%),
+        radial-gradient(5% 5% at 61% 47%, var(--eye) 0 90%, transparent 92%),
+        radial-gradient(2.5% 2.5% at 40.5% 45.5%, var(--highlight) 0 95%, transparent 97%),
+        radial-gradient(2.5% 2.5% at 62.5% 45.5%, var(--highlight) 0 95%, transparent 97%),
+        radial-gradient(8% 6% at 50% 55%, rgba(0,0,0,.25) 0 70%, transparent 72%),
+        radial-gradient(3% 3% at 47% 55%, rgba(0,0,0,.35) 0 80%, transparent 82%),
+        radial-gradient(3% 3% at 53% 55%, rgba(0,0,0,.35) 0 80%, transparent 82%),
+        radial-gradient(70% 70% at 50% 55%, rgba(0,0,0,.18), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.18), transparent 45%),
+        radial-gradient(120% 120% at 30% 20%, rgba(255,255,255,.12), transparent 40%),
+        linear-gradient(135deg, #2b2b2b, #121212);
+    }
+
+    .monkey-icon::before,
+    .monkey-icon::after{
+      content:"";
+      position:absolute;
+      top: 22%;
+      width: 28%;
+      height: 28%;
+      border-radius: 50%;
+      background:
+        radial-gradient(45% 45% at 55% 55%, var(--skin) 0 60%, transparent 62%),
+        radial-gradient(100% 100% at 50% 50%, var(--fur2) 0 72%, transparent 74%);
+      filter: drop-shadow(0 2px 0 rgba(0,0,0,.25));
+    }
+
+    .monkey-icon::before{ left: 6%; }
+    .monkey-icon::after { right: 6%; }
+
+    .m-happy{
+      background:
+        radial-gradient(65% 65% at 50% 50%, var(--fur) 0 55%, transparent 57%),
+        radial-gradient(58% 52% at 50% 56%, var(--skin) 0 52%, transparent 54%),
+        radial-gradient(18% 14% at 34% 62%, rgba(255,140,140,.25) 0 70%, transparent 72%),
+        radial-gradient(18% 14% at 66% 62%, rgba(255,140,140,.25) 0 70%, transparent 72%),
+        radial-gradient(11% 6% at 38% 46%, #fff 0 85%, transparent 87%),
+        radial-gradient(11% 6% at 62% 46%, #fff 0 85%, transparent 87%),
+        radial-gradient(5% 5% at 39% 46.5%, var(--eye) 0 90%, transparent 92%),
+        radial-gradient(5% 5% at 61% 46.5%, var(--eye) 0 90%, transparent 92%),
+        radial-gradient(2.5% 2.5% at 40.5% 45.0%, var(--highlight) 0 95%, transparent 97%),
+        radial-gradient(2.5% 2.5% at 62.5% 45.0%, var(--highlight) 0 95%, transparent 97%),
+        radial-gradient(8% 6% at 50% 55%, rgba(0,0,0,.25) 0 70%, transparent 72%),
+        radial-gradient(3% 3% at 47% 55%, rgba(0,0,0,.35) 0 80%, transparent 82%),
+        radial-gradient(3% 3% at 53% 55%, rgba(0,0,0,.35) 0 80%, transparent 82%),
+        radial-gradient(40% 24% at 50% 67%, transparent 0 58%, rgba(0,0,0,.55) 60% 64%, transparent 66%),
+        radial-gradient(70% 70% at 50% 55%, rgba(0,0,0,.18), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.18), transparent 45%),
+        radial-gradient(120% 120% at 30% 20%, rgba(255,255,255,.12), transparent 40%),
+        linear-gradient(135deg, #2b2b2b, #121212);
+    }
+
+    .m-angry{
+      background:
+        radial-gradient(65% 65% at 50% 50%, var(--fur) 0 55%, transparent 57%),
+        radial-gradient(58% 52% at 50% 56%, var(--skin) 0 52%, transparent 54%),
+        radial-gradient(18% 14% at 34% 62%, rgba(255,90,90,.22) 0 70%, transparent 72%),
+        radial-gradient(18% 14% at 66% 62%, rgba(255,90,90,.22) 0 70%, transparent 72%),
+        radial-gradient(10% 10% at 38% 46%, #fff 0 85%, transparent 87%),
+        radial-gradient(10% 10% at 62% 46%, #fff 0 85%, transparent 87%),
+        radial-gradient(5% 5% at 39% 47%, var(--eye) 0 90%, transparent 92%),
+        radial-gradient(5% 5% at 61% 47%, var(--eye) 0 90%, transparent 92%),
+        linear-gradient(160deg, transparent 0 46%, rgba(0,0,0,.75) 47% 50%, transparent 51% 100%),
+        linear-gradient(200deg, transparent 0 46%, rgba(0,0,0,.75) 47% 50%, transparent 51% 100%),
+        radial-gradient(8% 6% at 50% 55%, rgba(0,0,0,.25) 0 70%, transparent 72%),
+        radial-gradient(3% 3% at 47% 55%, rgba(0,0,0,.35) 0 80%, transparent 82%),
+        radial-gradient(3% 3% at 53% 55%, rgba(0,0,0,.35) 0 80%, transparent 82%),
+        linear-gradient(0deg, transparent 0 69%, rgba(0,0,0,.65) 69% 71%, transparent 71% 100%),
+        radial-gradient(70% 70% at 50% 55%, rgba(0,0,0,.18), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.18), transparent 45%),
+        radial-gradient(120% 120% at 30% 20%, rgba(255,255,255,.12), transparent 40%),
+        linear-gradient(135deg, #2b2b2b, #121212);
+      background-repeat: no-repeat;
+      background-size: auto, auto, auto, auto, auto, auto, auto, auto, 60% 12%, 60% 12%, auto, auto, auto, auto, auto, auto, auto, auto;
+      background-position: center, center, center, center, center, center, center, center, 22% 33%, 78% 33%, center, center, center, center, center, center, center, center;
+    }
+
+    .m-dead{
+      background:
+        radial-gradient(65% 65% at 50% 50%, var(--fur) 0 55%, transparent 57%),
+        radial-gradient(58% 52% at 50% 56%, var(--skin) 0 52%, transparent 54%),
+        radial-gradient(18% 14% at 34% 62%, rgba(160,160,160,.18) 0 70%, transparent 72%),
+        radial-gradient(18% 14% at 66% 62%, rgba(160,160,160,.18) 0 70%, transparent 72%),
+        linear-gradient(45deg, transparent 0 46%, rgba(0,0,0,.75) 47% 53%, transparent 54% 100%),
+        linear-gradient(-45deg, transparent 0 46%, rgba(0,0,0,.75) 47% 53%, transparent 54% 100%),
+        linear-gradient(45deg, transparent 0 46%, rgba(0,0,0,.75) 47% 53%, transparent 54% 100%),
+        linear-gradient(-45deg, transparent 0 46%, rgba(0,0,0,.75) 47% 53%, transparent 54% 100%),
+        radial-gradient(8% 6% at 50% 55%, rgba(0,0,0,.25) 0 70%, transparent 72%),
+        radial-gradient(18% 12% at 50% 70%, rgba(0,0,0,.65) 0 70%, transparent 72%),
+        radial-gradient(12% 10% at 50% 76%, #e56b6b 0 70%, transparent 72%),
+        radial-gradient(70% 70% at 50% 55%, rgba(0,0,0,.18), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.18), transparent 45%),
+        radial-gradient(120% 120% at 30% 20%, rgba(255,255,255,.12), transparent 40%),
+        linear-gradient(135deg, #2b2b2b, #121212);
+      background-repeat: no-repeat;
+      background-size: auto, auto, auto, auto, 18% 18%, 18% 18%, 18% 18%, 18% 18%, auto, auto, auto, auto, auto, auto, auto;
+      background-position: center, center, center, center, 34% 44%, 34% 44%, 66% 44%, 66% 44%, center, center, center, center, center, center, center;
+    }
+
+    .cell.win-highlight {
+      background: radial-gradient(circle, rgba(255,240,120,0.4) 0%, rgba(255,180,70,0.18) 45%, transparent 78%);
+      animation: winPulse 0.7s ease-in-out infinite;
+      z-index: 2;
+    }
+
+    @keyframes winPulse {
+      0%, 100% { transform: scale(1); filter: brightness(1); }
+      50% { transform: scale(1.08); filter: brightness(1.3); }
+    }
+
+    .win-lines-overlay {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    .win-line {
+      fill: none;
+      stroke-width: 6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 16 10;
+      animation: lineFlow 1.1s linear infinite;
+      filter: drop-shadow(0 0 6px currentColor);
+    }
+
+    @keyframes lineFlow {
+      to { stroke-dashoffset: -26; }
+    }
+
+    .symbol-cell {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .symbol-name {
+      font-size: 0.82rem;
+      white-space: nowrap;
+    }
+
+    .symbol-photo {
+      --size: 104px;
+      width: var(--size);
+      height: var(--size);
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.22);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.26);
+      object-fit: cover;
+      object-position: center;
+      image-rendering: auto;
+      flex: 0 0 auto;
+    }
+
+    .mk{
+      --size: 72px;
+      width: var(--size);
+      height: var(--size);
+      position: relative;
+      display: inline-block;
+      border-radius: 22%;
+      overflow: hidden;
+      background:
+        radial-gradient(120% 120% at 30% 20%, rgba(255,255,255,.10), transparent 40%),
+        radial-gradient(120% 120% at 70% 80%, rgba(0,0,0,.22), transparent 55%),
+        linear-gradient(135deg, #2b2b2b, #101010);
+      box-shadow:
+        0 10px 22px rgba(0,0,0,.28),
+        inset 0 1px 0 rgba(255,255,255,.12);
+    }
+
+    .mk-real{
+      --fur:  #6b3f1e;
+      --furD: #4d2a12;
+      --skin: #d6a06f;
+      --skin2:#c18a5b;
+      --eye:  #0e0e0e;
+      background:
+        radial-gradient(85% 85% at 50% 55%, rgba(0,0,0,.18), transparent 60%),
+        radial-gradient(120% 120% at 25% 15%, rgba(255,255,255,.10), transparent 40%),
+        radial-gradient(70% 70% at 48% 46%, var(--fur) 0 56%, transparent 58%),
+        radial-gradient(70% 70% at 54% 50%, var(--furD) 0 52%, transparent 54%),
+        radial-gradient(60% 52% at 50% 57%, var(--skin) 0 50%, transparent 52%),
+        radial-gradient(60% 52% at 50% 60%, var(--skin2) 0 46%, transparent 48%),
+        radial-gradient(18% 14% at 35% 64%, rgba(210,110,110,.18) 0 70%, transparent 72%),
+        radial-gradient(18% 14% at 65% 64%, rgba(210,110,110,.18) 0 70%, transparent 72%),
+        radial-gradient(10% 9% at 38% 46%, #f5f6f7 0 82%, transparent 85%),
+        radial-gradient(10% 9% at 62% 46%, #f5f6f7 0 82%, transparent 85%),
+        radial-gradient(6% 6% at 38.3% 46.3%, rgba(60,40,20,.45) 0 88%, transparent 90%),
+        radial-gradient(6% 6% at 61.7% 46.3%, rgba(60,40,20,.45) 0 88%, transparent 90%),
+        radial-gradient(4% 4% at 38.8% 46.6%, var(--eye) 0 90%, transparent 92%),
+        radial-gradient(4% 4% at 61.2% 46.6%, var(--eye) 0 90%, transparent 92%),
+        radial-gradient(2.2% 2.2% at 40.0% 45.4%, rgba(255,255,255,.45) 0 95%, transparent 97%),
+        radial-gradient(2.2% 2.2% at 62.4% 45.4%, rgba(255,255,255,.45) 0 95%, transparent 97%),
+        radial-gradient(10% 8% at 50% 56%, rgba(0,0,0,.18) 0 65%, transparent 68%),
+        radial-gradient(3% 3% at 47.5% 56%, rgba(0,0,0,.28) 0 85%, transparent 87%),
+        radial-gradient(3% 3% at 52.5% 56%, rgba(0,0,0,.28) 0 85%, transparent 87%),
+        radial-gradient(38% 16% at 50% 70%, transparent 0 62%, rgba(0,0,0,.40) 64% 66%, transparent 68%),
+        radial-gradient(120% 120% at 30% 20%, rgba(255,255,255,.08), transparent 40%),
+        radial-gradient(120% 120% at 70% 80%, rgba(0,0,0,.22), transparent 55%),
+        linear-gradient(135deg, #2b2b2b, #101010);
+    }
+
+    .mk-real::before,
+    .mk-real::after{
+      content:"";
+      position:absolute;
+      top: 22%;
+      width: 28%;
+      height: 28%;
+      border-radius: 50%;
+      background:
+        radial-gradient(45% 45% at 55% 55%, var(--skin) 0 62%, transparent 64%),
+        radial-gradient(95% 95% at 50% 50%, var(--furD) 0 72%, transparent 74%),
+        radial-gradient(120% 120% at 30% 20%, rgba(255,255,255,.10), transparent 40%);
+      filter: drop-shadow(0 2px 0 rgba(0,0,0,.25));
+      opacity: .95;
+    }
+    .mk-real::before{ left: 6%; }
+    .mk-real::after { right: 6%; }
+
+    .mk-real--angry{
+      background:
+        radial-gradient(85% 85% at 50% 55%, rgba(0,0,0,.18), transparent 60%),
+        radial-gradient(120% 120% at 25% 15%, rgba(255,255,255,.10), transparent 40%),
+        radial-gradient(70% 70% at 48% 46%, var(--fur) 0 56%, transparent 58%),
+        radial-gradient(70% 70% at 54% 50%, var(--furD) 0 52%, transparent 54%),
+        radial-gradient(60% 52% at 50% 57%, var(--skin) 0 50%, transparent 52%),
+        radial-gradient(60% 52% at 50% 60%, var(--skin2) 0 46%, transparent 48%),
+        radial-gradient(10% 9% at 38% 46%, #f5f6f7 0 82%, transparent 85%),
+        radial-gradient(10% 9% at 62% 46%, #f5f6f7 0 82%, transparent 85%),
+        radial-gradient(4% 4% at 38.8% 46.6%, var(--eye) 0 90%, transparent 92%),
+        radial-gradient(4% 4% at 61.2% 46.6%, var(--eye) 0 90%, transparent 92%),
+        linear-gradient(165deg, transparent 0 47%, rgba(0,0,0,.65) 48% 52%, transparent 53% 100%),
+        linear-gradient(195deg, transparent 0 47%, rgba(0,0,0,.65) 48% 52%, transparent 53% 100%),
+        radial-gradient(10% 8% at 50% 56%, rgba(0,0,0,.18) 0 65%, transparent 68%),
+        linear-gradient(0deg, transparent 0 70%, rgba(0,0,0,.45) 70% 71.5%, transparent 71.5% 100%),
+        radial-gradient(120% 120% at 30% 20%, rgba(255,255,255,.08), transparent 40%),
+        radial-gradient(120% 120% at 70% 80%, rgba(0,0,0,.22), transparent 55%),
+        linear-gradient(135deg, #2b2b2b, #101010);
+      background-repeat:no-repeat;
+      background-size: auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,62% 12%,62% 12%,auto,auto,auto,auto,auto;
+      background-position: center,center,center,center,center,center,center,center,center,center,22% 33%,78% 33%,center,center,center,center,center;
+    }
+
+    .mk-real--sad{
+      background:
+        radial-gradient(85% 85% at 50% 55%, rgba(0,0,0,.20), transparent 60%),
+        radial-gradient(120% 120% at 25% 15%, rgba(255,255,255,.10), transparent 40%),
+        radial-gradient(70% 70% at 48% 46%, var(--fur) 0 56%, transparent 58%),
+        radial-gradient(70% 70% at 54% 50%, var(--furD) 0 52%, transparent 54%),
+        radial-gradient(60% 52% at 50% 57%, var(--skin) 0 50%, transparent 52%),
+        radial-gradient(60% 52% at 50% 60%, var(--skin2) 0 46%, transparent 48%),
+        radial-gradient(10% 9% at 38% 47%, #f5f6f7 0 82%, transparent 85%),
+        radial-gradient(10% 9% at 62% 47%, #f5f6f7 0 82%, transparent 85%),
+        radial-gradient(4% 4% at 38.8% 47.4%, var(--eye) 0 90%, transparent 92%),
+        radial-gradient(4% 4% at 61.2% 47.4%, var(--eye) 0 90%, transparent 92%),
+        radial-gradient(10% 8% at 50% 56%, rgba(0,0,0,.18) 0 65%, transparent 68%),
+        radial-gradient(40% 20% at 50% 72%, transparent 0 58%, rgba(0,0,0,.42) 60% 64%, transparent 66%),
+        radial-gradient(120% 120% at 30% 20%, rgba(255,255,255,.08), transparent 40%),
+        radial-gradient(120% 120% at 70% 80%, rgba(0,0,0,.22), transparent 55%),
+        linear-gradient(135deg, #2b2b2b, #101010);
+    }
+
+    .mk-real--dead{
+      background:
+        radial-gradient(85% 85% at 50% 55%, rgba(0,0,0,.20), transparent 60%),
+        radial-gradient(120% 120% at 25% 15%, rgba(255,255,255,.10), transparent 40%),
+        radial-gradient(70% 70% at 48% 46%, var(--fur) 0 56%, transparent 58%),
+        radial-gradient(70% 70% at 54% 50%, var(--furD) 0 52%, transparent 54%),
+        radial-gradient(60% 52% at 50% 57%, var(--skin) 0 50%, transparent 52%),
+        radial-gradient(60% 52% at 50% 60%, var(--skin2) 0 46%, transparent 48%),
+        linear-gradient(45deg,  transparent 0 46%, rgba(0,0,0,.65) 47% 53%, transparent 54% 100%),
+        linear-gradient(-45deg, transparent 0 46%, rgba(0,0,0,.65) 47% 53%, transparent 54% 100%),
+        linear-gradient(45deg,  transparent 0 46%, rgba(0,0,0,.65) 47% 53%, transparent 54% 100%),
+        linear-gradient(-45deg, transparent 0 46%, rgba(0,0,0,.65) 47% 53%, transparent 54% 100%),
+        radial-gradient(10% 8% at 50% 56%, rgba(0,0,0,.18) 0 65%, transparent 68%),
+        radial-gradient(18% 14% at 50% 72%, rgba(0,0,0,.55) 0 70%, transparent 72%),
+        radial-gradient(120% 120% at 30% 20%, rgba(255,255,255,.08), transparent 40%),
+        radial-gradient(120% 120% at 70% 80%, rgba(0,0,0,.22), transparent 55%),
+        linear-gradient(135deg, #2b2b2b, #101010);
+      background-repeat:no-repeat;
+      background-size: auto,auto,auto,auto,auto,auto,18% 18%,18% 18%,18% 18%,18% 18%,auto,auto,auto,auto,auto;
+      background-position: center,center,center,center,center,center,34% 46%,34% 46%,66% 46%,66% 46%,center,center,center,center,center;
+    }
+
+    .cell .symbol-photo {
+      width: 100%;
+      height: 100%;
+      --size: 100%;
+      border: 3px solid #d9a441;
+      border-radius: 10px;
+      box-sizing: border-box;
+      box-shadow: inset 0 0 0 1px rgba(255, 228, 156, 0.7), 0 0 12px rgba(217, 164, 65, 0.18);
+      object-fit: cover;
+      object-position: center;
+      transform: none;
+    }
+    .symbol-cell .symbol-photo { --size: 48px; }
+
+    .info-panel {
+      background: linear-gradient(180deg, rgba(36,20,12,0.95), rgba(18,10,8,0.96));
+      border: 2px solid #9f7426;
+      border-radius: 16px;
+      padding: 8px 10px;
+      width: 100%;
+      max-width: none;
+      text-align: left;
+      box-shadow: inset 0 0 16px rgba(255,220,150,0.2), 0 10px 18px rgba(0,0,0,0.3);
+      display: flex;
+      justify-content: flex-start;
+      min-height: 74px;
+      box-sizing: border-box;
+    }
+
+    .control-stack {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .left-pack {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      justify-self: end;
+      min-width: 0;
+    }
+
+    .right-pack {
+      justify-self: start;
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .my-bet-info {
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 1px solid #4f6fb8;
+      background: rgba(27, 39, 72, 0.9);
+      color: #e7efff;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .meta-row { display: none; }
+
+    .meta-strip {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      align-items: center;
+      min-width: max-content;
+    }
+
+    #balance { font-size: 1.15rem; color: #00ffaa; margin: 0; white-space: nowrap; }
+    #bet-amount { display: none; }
+    #last-win { display: none; }
+
+    .bet-wheel-control {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(42, 44, 52, 0.9);
+      border: 1px solid #777e90;
+      border-radius: 12px;
+      padding: 6px 10px;
+      min-width: 0;
+    }
+
+    .bet-wheel-label {
+      font-size: 0.9rem;
+      color: #cfd8ef;
+      white-space: nowrap;
+      font-weight: 700;
+    }
+
+    .bet-wheel-input {
+      width: 92px;
+      padding: 6px 8px;
+      border: 1px solid #8d95ad;
+      border-radius: 9px;
+      background: #161b2b;
+      color: #f7fbff;
+      font-weight: 800;
+      font-size: 1rem;
+      text-align: center;
+      outline: none;
+    }
+
+    .bet-wheel-input:focus {
+      border-color: #e6b959;
+      box-shadow: 0 0 0 2px rgba(230,185,89,0.22);
+    }
+
+    .spin-btn {
+      padding: 10px 30px;
+      font-size: 1.15rem;
+      font-weight: bold;
+      color: white;
+      background: linear-gradient(45deg, #aa00ff, #ff00aa);
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      box-shadow: 0 6px 14px rgba(170,0,255,0.55);
+      transition: all 0.3s;
+      white-space: nowrap;
+      flex: 0 0 auto;
+    }
+
+    .spin-btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 18px 50px rgba(170,0,255,1);
+    }
+
+    .spin-btn:disabled {
+      background: #555;
+      box-shadow: none;
+      cursor: not-allowed;
+    }
+
+    .actions { display: none; }
+
+    .action-btn {
+      padding: 10px 18px;
+      font-size: 1rem;
+      border: 1px solid #6d6d6d;
+      border-radius: 10px;
+      cursor: pointer;
+      background: #252525;
+      color: #f2f2f2;
+    }
+
+    .action-btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    #stats { display: none; }
+
+    .bottom-spin { display: none; }
+
+    .paytable {
+      width: 100%;
+      max-width: none;
+      background: rgba(8, 18, 36, 0.86);
+      border: 1px solid #2f6fff;
+      border-radius: 14px;
+      padding: 16px;
+      color: #d9e8ff;
+    }
+
+    .paytable h3 {
+      margin: 0 0 10px 0;
+      text-align: center;
+      color: #89b6ff;
+    }
+
+    .paytable-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .paytable table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.92rem;
+    }
+
+    .paytable th, .paytable td {
+      border: 1px solid rgba(120, 165, 255, 0.35);
+      padding: 6px 8px;
+      text-align: center;
+    }
+
+    .paytable th {
+      background: rgba(55, 95, 180, 0.28);
+    }
+
+    .payline-list {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 0.92rem;
+      line-height: 1.45;
+    }
+
+    .paytable-note {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #a7c4ff;
+      text-align: center;
+    }
+
+    @media (max-width: 820px) {
+      .gates-layout {
+        grid-template-columns: 1fr;
+        min-height: 0;
+      }
+
+      .board-wrap {
+        order: 1;
+      }
+
+      .side-panel {
+        min-height: 70px;
+      }
+
+      .reels {
+        --reel-w: calc((100% - 30px) / 6);
+        padding: 10px;
+        min-height: 330px;
+      }
+
+      .cell .symbol-photo {
+        transform: none;
+      }
+
+      .info-panel {
+        width: 100%;
+        max-width: none;
+        text-align: center;
+        justify-content: center;
+      }
+
+      .control-stack {
+        width: 100%;
+        grid-template-columns: 1fr;
+        justify-items: center;
+      }
+
+      .bet-wheel-control,
+      .drawer-controls {
+        justify-content: center;
+      }
+
+      .meta-strip {
+        align-items: center;
+      }
+
+      .left-pack,
+      .right-pack {
+        justify-self: center;
+      }
+
+      .paytable-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .history {
+      width: 100%;
+      max-width: none;
+      background: rgba(10,5,30,0.85);
+      border: 1px solid #444;
+      border-radius: 14px;
+      padding: 18px;
+      max-height: 340px;
+      overflow-y: auto;
+      font-family: monospace;
+      font-size: 0.97rem;
+      color: #aaffff;
+      margin-top: 30px;
+    }
+
+    .history h3 {
+      color: #00ffff;
+      margin-bottom: 14px;
+      text-align: center;
+    }
+
+    .drawer-controls {
+      width: auto;
+      display: flex;
+      gap: 8px;
+      flex-wrap: nowrap;
+      justify-content: flex-end;
+      margin-top: 0;
+    }
+
+    .drawer-btn {
+      padding: 8px 12px;
+      font-size: 0.95rem;
+      border: 1px solid #4f6fb8;
+      border-radius: 10px;
+      background: #1b2748;
+      color: #e7efff;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .drawer-btn.active {
+      background: #2f4fa8;
+      border-color: #88a7ff;
+    }
+
+    .drawer {
+      display: none;
+      width: 100%;
+    }
+
+    .drawer.open {
+      display: block;
+    }
+
+    .bonus-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.88);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      font-size: clamp(3.5rem, 10vw, 6.5rem);
+      color: #ffd700;
+      text-shadow: 0 0 40px #ff0044, 0 0 80px #ff0044;
+      font-weight: bold;
+      animation: pulse 2s infinite;
+      display: none;
+    }
+
+    @keyframes pulse {
+      0%,100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.08); opacity: 0.92; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="header">МанкиПонСлот 🐵</div>
+<div class="jackpot-pon">
+  <div class="jackpot-pon-left">
+    <div class="jackpot-pon-title">Джекпот Пон</div>
+    <img class="jackpot-pon-photo" src="jackpot_pon_monkeys.png" alt="Обезьяны Джекпот Пон">
+  </div>
+  <div class="jackpot-pon-value" id="jackpotPonValue">0 💰</div>
+</div>
+
+<div class="game-container">
+  <div class="gates-layout">
+    <aside class="side-panel">
+      <div class="bonus-panel">
+        <button class="bonus-buy-btn" id="buyBonusBtn" onclick="buyBonusGame()">Бонуска Пон</button>
+        <div class="bonus-buy-price" id="bonusBuyPrice">Цена: 1000 💰</div>
+      </div>
+    </aside>
+    <div class="board-wrap">
+      <div class="board-title">Символы оплачиваются где угодно на экране</div>
+      <div class="reels" id="reels"></div>
+    </div>
+    <aside class="side-panel"></aside>
+  </div>
+
+  <div class="info-panel">
+      <div class="control-stack">
+        <div class="left-pack">
+          <div class="meta-strip">
+            <div id="balance">Баланс: 1000 💰</div>
+            <div id="bet-amount">Ставка: 10</div>
+          </div>
+
+          <div class="bet-wheel-control">
+            <span class="bet-wheel-label">Ставка</span>
+            <input
+              id="betWheel"
+              class="bet-wheel-input"
+              type="number"
+              min="2"
+              max="2000"
+              step="1"
+              value="10"
+            />
+          </div>
+        </div>
+        <button class="spin-btn" id="spinBtn" onclick="spin()">SPIN</button>
+        <div id="last-win"></div>
+        <div class="actions">
+          <button class="action-btn" id="auto10Btn" onclick="startAutoSpins(10)">AUTO x10</button>
+          <button class="action-btn" id="autoStopBtn" onclick="stopAutoSpins()" disabled>STOP AUTO</button>
+          <button class="action-btn" onclick="resetProgress()">RESET</button>
+        </div>
+        <div id="stats">Спинов: 0 | Авто: выкл</div>
+
+        <div class="right-pack">
+          <div class="my-bet-info" id="myBetInfo">Моя ставка: 10</div>
+          <div class="drawer-controls">
+            <button class="drawer-btn" id="togglePaytableBtn" onclick="toggleDrawer('paytable')">Линии выплат</button>
+            <button class="drawer-btn" id="toggleHistoryBtn" onclick="toggleDrawer('history')">Журнал баланса</button>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <div class="bottom-spin"></div>
+
+  <div class="drawer" id="paytableDrawer">
+    <div class="paytable">
+      <h3>Линии выплат и коэффициенты</h3>
+      <div class="paytable-grid">
+        <div>
+          <table>
+            <thead>
+              <tr>
+                <th>Символ</th>
+                <th>x3</th>
+                <th>x4</th>
+                <th>x5</th>
+              </tr>
+            </thead>
+            <tbody id="paytableBody"></tbody>
+          </table>
+        </div>
+        <div>
+          <ol class="payline-list" id="paylineList"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="drawer" id="historyDrawer">
+    <div class="history">
+      <h3>Журнал операций</h3>
+      <div id="historyLog"></div>
+    </div>
+  </div>
+</div>
+
+<div class="bonus-overlay" id="bonusOverlay"></div>
+
+<script>
+// ============================================================
+const ROWS = 3;
+const COLS = 6;
+const JACKPOT_SPIN_CHANCE = 0.0001; // 0.01%
+const JACKPOT_PON_DROP_CHANCE = 0.000001; // 0.0001%
+const JACKPOT_PON_GROWTH_PER_SEC = 100;
+const JACKPOT_PON_SEED = 1000;
+const BONUS_BUY_MULTIPLIER = 100;
+const BONUS_FREE_SPINS = 10;
+const JACKPOT_SYMBOL = "silverback_king";
+let balance = 1000;
+let bet = 10;
+let isSpinning = false;
+let spinCount = 0;
+let autoSpinsRemaining = 0;
+let bonusSpinsRemaining = 0;
+let jackpotPonValue = JACKPOT_PON_SEED;
+let jackpotPonLastTick = Date.now();
+const HISTORY_LIMIT = 120;
+const STORAGE_KEY = "antifraud_slot_v2_state";
+let audioCtx = null;
+
+const SYMBOLS = [
+  { icon: "capuchin", name: "Удивлённый", img: "monkey_atlas_cuts/monkey_01.png", weight: 18, pays: { 3: 1, 4: 2, 5: 5 } },
+  { icon: "macaque", name: "Голубоглазый", img: "monkey_atlas_cuts/monkey_02.png", weight: 17, pays: { 3: 1, 4: 3, 5: 8 } },
+  { icon: "baboon", name: "Улыбка", img: "monkey_atlas_cuts/monkey_03.png", weight: 15, pays: { 3: 2, 4: 5, 5: 12 } },
+  { icon: "langur", name: "Пушистый", img: "monkey_atlas_cuts/monkey_04.png", weight: 12, pays: { 3: 3, 4: 10, 5: 30 } },
+  { icon: "orangutan", name: "Милый", img: "monkey_atlas_cuts/monkey_05.png", weight: 9, pays: { 3: 5, 4: 20, 5: 100 } },
+  { icon: "howler", name: "Банановый", img: "monkey_atlas_cuts/monkey_06.png", weight: 6, pays: { 3: 10, 4: 100, 5: 1000 } },
+  { icon: "bonobo", name: "Огурчик", img: "monkey_atlas_cuts/monkey_07.png", weight: 3, pays: { 3: 20, 4: 300, 5: 5000 } },
+  { icon: JACKPOT_SYMBOL, name: "Ванна", img: "monkey_atlas_cuts/monkey_08.png", weight: 1, pays: { 3: 50, 4: 5000, 5: 50000 } }
+];
+
+function buildPaylines(target, cols, rows) {
+  const result = [];
+  const seen = new Set();
+  const add = (line) => {
+    const key = line.join("");
+    if (seen.has(key)) return;
+    seen.add(key);
+    result.push(line.slice());
+  };
+
+  // Базовые классические линии.
+  add([0, 0, 0, 0, 0, 0]);
+  add([1, 1, 1, 1, 1, 1]);
+  add([2, 2, 2, 2, 2, 2]);
+  add([0, 1, 2, 2, 1, 0]);
+  add([2, 1, 0, 0, 1, 2]);
+  add([0, 0, 1, 1, 2, 2]);
+  add([2, 2, 1, 1, 0, 0]);
+  add([1, 0, 0, 1, 2, 2]);
+  add([1, 2, 2, 1, 0, 0]);
+  add([0, 1, 1, 2, 1, 0]);
+
+  const generated = [];
+  const line = new Array(cols).fill(0);
+  const rec = (col) => {
+    if (col === cols) {
+      generated.push(line.slice());
+      return;
+    }
+    for (let row = 0; row < rows; row++) {
+      if (col > 0 && Math.abs(row - line[col - 1]) > 1) continue;
+      line[col] = row;
+      rec(col + 1);
+    }
+  };
+  rec(0);
+
+  generated.sort((a, b) => {
+    const turns = (arr) => {
+      let t = 0;
+      for (let i = 2; i < arr.length; i++) {
+        const d1 = arr[i - 1] - arr[i - 2];
+        const d2 = arr[i] - arr[i - 1];
+        if (d1 !== d2) t++;
+      }
+      return t;
+    };
+    const spread = (arr) => arr.reduce((acc, v) => acc + Math.abs(v - 1), 0);
+    return (turns(a) - turns(b)) || (spread(a) - spread(b));
+  });
+
+  for (const g of generated) {
+    if (result.length >= target) break;
+    add(g);
+  }
+  return result.slice(0, target);
+}
+
+const PAYLINES = buildPaylines(70, COLS, ROWS);
+
+const SYMBOL_MAP = Object.fromEntries(SYMBOLS.map(symbol => [symbol.icon, symbol]));
+
+function createSymbolIcon(symbolId) {
+  const symbol = SYMBOL_MAP[symbolId];
+  const icon = document.createElement("img");
+  icon.className = "symbol-photo";
+  icon.src = symbol.img;
+  icon.dataset.symbol = symbolId;
+  icon.setAttribute("role", "img");
+  icon.setAttribute("aria-label", symbol.name);
+  icon.alt = symbol.name;
+  icon.loading = "eager";
+  icon.decoding = "async";
+  return icon;
+}
+
+function getRandomSymbol(options = {}) {
+  const excludeJackpot = options.excludeJackpot !== false;
+  const pool = excludeJackpot
+    ? SYMBOLS.filter(symbol => symbol.icon !== JACKPOT_SYMBOL)
+    : SYMBOLS;
+  const totalWeight = pool.reduce((acc, symbol) => acc + symbol.weight, 0);
+  let point = Math.random() * totalWeight;
+
+  for (const symbol of pool) {
+    point -= symbol.weight;
+    if (point <= 0) return symbol.icon;
+  }
+  return pool[pool.length - 1].icon;
+}
+
+function getAudioCtx() {
+  if (!audioCtx) {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  }
+  if (audioCtx.state === "suspended") {
+    audioCtx.resume();
+  }
+  return audioCtx;
+}
+
+function playSpinClickSound() {
+  const ctx = getAudioCtx();
+  const now = ctx.currentTime;
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+  osc.type = "sine";
+  osc.frequency.setValueAtTime(720, now);
+  osc.frequency.exponentialRampToValueAtTime(520, now + 0.07);
+  gain.gain.setValueAtTime(0.0001, now);
+  gain.gain.exponentialRampToValueAtTime(0.05, now + 0.012);
+  gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.11);
+  osc.connect(gain);
+  gain.connect(ctx.destination);
+  osc.start(now);
+  osc.stop(now + 0.12);
+}
+
+function createReels() {
+  const container = document.getElementById("reels");
+  container.innerHTML = "";
+  for (let i = 0; i < COLS; i++) {
+    const reel = document.createElement("div");
+    reel.className = "reel";
+    const symbols = document.createElement("div");
+    symbols.className = "symbols";
+    reel.appendChild(symbols);
+    container.appendChild(reel);
+
+    const initial = [];
+    for (let r = 0; r < ROWS; r++) initial.push(getRandomSymbol());
+    populateReel(symbols, initial);
+    symbols.dataset.finalStart = "0";
+    symbols.style.transform = "translateY(0px)";
+  }
+  const overlay = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  overlay.setAttribute("id", "winLinesOverlay");
+  overlay.setAttribute("class", "win-lines-overlay");
+  overlay.setAttribute("viewBox", `0 0 ${container.clientWidth || 100} ${container.clientHeight || 100}`);
+  container.appendChild(overlay);
+}
+
+function saveState() {
+  const log = document.getElementById("historyLog");
+  const historyRows = [...log.children].slice(0, HISTORY_LIMIT).map(el => el.textContent || "");
+  const state = {
+    balance: Math.floor(balance),
+    bet,
+    spinCount,
+    bonusSpinsRemaining,
+    jackpotPonValue: Math.floor(jackpotPonValue),
+    jackpotPonLastTick,
+    historyRows
+  };
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+}
+
+function updateJackpotPonDisplay() {
+  const el = document.getElementById("jackpotPonValue");
+  if (!el) return;
+  el.textContent = `${Math.floor(jackpotPonValue).toLocaleString("ru-RU")} 💰`;
+}
+
+function tickJackpotPon() {
+  const now = Date.now();
+  const elapsedSec = Math.floor((now - jackpotPonLastTick) / 1000);
+  if (elapsedSec <= 0) return;
+  jackpotPonValue += elapsedSec * JACKPOT_PON_GROWTH_PER_SEC;
+  jackpotPonLastTick += elapsedSec * 1000;
+  updateJackpotPonDisplay();
+}
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+    const state = JSON.parse(raw);
+    if (typeof state.balance === "number") balance = Math.max(0, state.balance);
+    if (typeof state.bet === "number") bet = Math.max(2, Math.min(2000, state.bet));
+    if (typeof state.spinCount === "number") spinCount = Math.max(0, state.spinCount);
+    if (typeof state.bonusSpinsRemaining === "number") {
+      bonusSpinsRemaining = Math.max(0, Math.floor(state.bonusSpinsRemaining));
+    }
+    if (typeof state.jackpotPonValue === "number") {
+      jackpotPonValue = Math.max(JACKPOT_PON_SEED, state.jackpotPonValue);
+    }
+    if (typeof state.jackpotPonLastTick === "number") {
+      jackpotPonLastTick = state.jackpotPonLastTick;
+    }
+    if (Array.isArray(state.historyRows)) {
+      const log = document.getElementById("historyLog");
+      log.innerHTML = "";
+      state.historyRows.slice(0, HISTORY_LIMIT).forEach(row => {
+        const div = document.createElement("div");
+        div.style.marginBottom = "6px";
+        div.textContent = row;
+        log.appendChild(div);
+      });
+    }
+  } catch (e) {
+    localStorage.removeItem(STORAGE_KEY);
+  }
+  tickJackpotPon();
+}
+
+function populateReel(symbolsEl, symbols) {
+  symbolsEl.innerHTML = "";
+  const reelEl = symbolsEl.parentElement;
+  const reelHeight = reelEl ? reelEl.getBoundingClientRect().height : 0;
+  const cellHeight = reelHeight > 0 ? (reelHeight / ROWS) : 156;
+  symbols.forEach(sym => {
+    const div = document.createElement("div");
+    div.className = "cell";
+    div.style.height = `${cellHeight}px`;
+    div.appendChild(createSymbolIcon(sym));
+    symbolsEl.appendChild(div);
+  });
+}
+
+function spinReels(callback) {
+  spinCount++;
+  const isJackpotSpin = Math.random() < JACKPOT_SPIN_CHANCE;
+  const finalGrid = [];
+
+  for (let r = 0; r < ROWS; r++) {
+    finalGrid[r] = [];
+    for (let c = 0; c < COLS; c++) {
+      finalGrid[r][c] = getRandomSymbol();
+    }
+  }
+
+  if (isJackpotSpin) {
+    const jackpotLine = PAYLINES[1];
+    for (let c = 0; c < COLS; c++) {
+      finalGrid[jackpotLine[c]][c] = JACKPOT_SYMBOL;
+    }
+  }
+
+  const reelSymbols = document.querySelectorAll(".reel .symbols");
+
+  let finishedReels = 0;
+  const totalReels = reelSymbols.length;
+  let completed = false;
+  const finishAll = () => {
+    if (completed) return;
+    completed = true;
+    callback(finalGrid, { isJackpotSpin });
+  };
+
+  reelSymbols.forEach((symbols, index) => {
+    const stripLength = ROWS + 30 + (index % 3) * 2;
+    const strip = [];
+    for (let i = 0; i < stripLength - ROWS; i++) {
+      strip.push(getRandomSymbol());
+    }
+    const finalStrip = finalGrid.map(row => row[index]);
+    strip.push(...finalStrip);
+    populateReel(symbols, strip);
+    symbols.dataset.finalStart = String(stripLength - ROWS);
+    symbols.classList.add("spinning");
+    const sampleCell = symbols.querySelector(".cell");
+    const cellHeight = sampleCell
+      ? sampleCell.getBoundingClientRect().height
+      : (symbols.parentElement.clientHeight / ROWS);
+    const maxOffset = (stripLength - ROWS) * cellHeight;
+    const duration = 1700;
+    const easing = "cubic-bezier(0.1, 0.78, 0.16, 1)";
+
+    symbols.style.transition = "none";
+    symbols.style.transform = "translateY(0px)";
+    void symbols.offsetHeight;
+    symbols.style.transition = `transform ${duration}ms ${easing}`;
+    symbols.style.transform = `translateY(-${maxOffset}px)`;
+
+    const onTransitionEnd = (event) => {
+      if (event.propertyName !== "transform") return;
+      symbols.removeEventListener("transitionend", onTransitionEnd);
+      symbols.classList.remove("spinning");
+      symbols.style.transition = "none";
+      symbols.style.transform = `translateY(-${maxOffset}px)`;
+      finishedReels += 1;
+      if (finishedReels >= totalReels) finishAll();
+    };
+    symbols.addEventListener("transitionend", onTransitionEnd);
+  });
+  setTimeout(finishAll, 2200);
+}
+
+function showBigWinAnimation(multiplier) {
+  const overlay = document.getElementById("bonusOverlay");
+  overlay.textContent = `BIG WIN x${multiplier.toFixed(1)}!`;
+  overlay.style.display = "flex";
+  setTimeout(() => {
+    overlay.style.display = "none";
+  }, 2400);
+}
+
+function evaluatePaylines(grid) {
+  const hits = [];
+  let totalCoeff = 0;
+
+  PAYLINES.forEach((line, index) => {
+    const lineSymbols = line.map((row, col) => grid[row][col]);
+    const first = lineSymbols[0];
+    let count = 1;
+    while (count < COLS && lineSymbols[count] === first) count++;
+
+    if (count >= 3) {
+      const paidCount = Math.min(count, 5);
+      const coeff = SYMBOL_MAP[first].pays[paidCount] || 0;
+      if (coeff > 0) {
+        totalCoeff += coeff;
+        hits.push({ lineIndex: index + 1, symbol: first, count: paidCount, coeff });
+      }
+    }
+  });
+
+  return { totalCoeff, hits };
+}
+
+function clearWinningHighlights() {
+  document.querySelectorAll(".cell.win-highlight").forEach(cell => cell.classList.remove("win-highlight"));
+  const overlay = document.getElementById("winLinesOverlay");
+  if (overlay) overlay.innerHTML = "";
+}
+
+function highlightWinningCells(hits) {
+  clearWinningHighlights();
+  if (!hits.length) return;
+
+  const reelSymbols = [...document.querySelectorAll(".reel .symbols")];
+  hits.forEach(hit => {
+    const line = PAYLINES[hit.lineIndex - 1];
+    for (let col = 0; col < Math.min(hit.count, COLS); col++) {
+      const row = line[col];
+      const symbolsEl = reelSymbols[col];
+      const start = Number(symbolsEl.dataset.finalStart || 0);
+      const cell = symbolsEl.children[start + row];
+      if (cell) cell.classList.add("win-highlight");
+    }
+  });
+}
+
+function renderWinningLines(hits) {
+  const overlay = document.getElementById("winLinesOverlay");
+  const reelsContainer = document.getElementById("reels");
+  if (!overlay || !reelsContainer) return;
+  overlay.innerHTML = "";
+  if (!hits.length) return;
+
+  const containerRect = reelsContainer.getBoundingClientRect();
+  const reelEls = [...document.querySelectorAll(".reel")];
+  const colors = ["#ffe066", "#7df7ff", "#ff79d1", "#8bff8a", "#ff9d5c"];
+
+  overlay.setAttribute("viewBox", `0 0 ${reelsContainer.clientWidth} ${reelsContainer.clientHeight}`);
+  overlay.setAttribute("width", String(reelsContainer.clientWidth));
+  overlay.setAttribute("height", String(reelsContainer.clientHeight));
+
+  hits.forEach((hit, idx) => {
+    const line = PAYLINES[hit.lineIndex - 1];
+    const points = [];
+    for (let col = 0; col < Math.min(hit.count, COLS); col++) {
+      const reelRect = reelEls[col].getBoundingClientRect();
+      const x = reelRect.left - containerRect.left + reelRect.width / 2;
+      const y = reelRect.top - containerRect.top + ((line[col] + 0.5) * reelRect.height / ROWS);
+      points.push(`${x},${y}`);
+    }
+    if (points.length >= 2) {
+      const poly = document.createElementNS("http://www.w3.org/2000/svg", "polyline");
+      poly.setAttribute("points", points.join(" "));
+      poly.setAttribute("class", "win-line");
+      poly.setAttribute("stroke", colors[idx % colors.length]);
+      overlay.appendChild(poly);
+    }
+  });
+}
+
+function getBonusBuyPrice() {
+  return bet * BONUS_BUY_MULTIPLIER;
+}
+
+function setupBetWheel() {
+  const wheelInput = document.getElementById("betWheel");
+  if (!wheelInput) return;
+
+  wheelInput.addEventListener("input", () => {
+    const value = Number(wheelInput.value);
+    if (Number.isFinite(value)) setBet(value);
+  });
+
+  wheelInput.addEventListener("wheel", (event) => {
+    event.preventDefault();
+    const delta = event.deltaY < 0 ? 1 : -1;
+    setBet(bet + delta);
+  }, { passive: false });
+}
+
+function updateUI() {
+  tickJackpotPon();
+  document.getElementById("balance").textContent = `Баланс: ${Math.floor(balance)} 💰`;
+  document.getElementById("bet-amount").textContent = `Ставка за спин: ${bet}`;
+  const myBetInfo = document.getElementById("myBetInfo");
+  if (myBetInfo) myBetInfo.textContent = `Моя ставка: ${bet}`;
+  const bonusPrice = getBonusBuyPrice();
+  const bonusPriceEl = document.getElementById("bonusBuyPrice");
+  if (bonusPriceEl) {
+    bonusPriceEl.textContent = `Цена: ${bonusPrice.toLocaleString("ru-RU")} 💰 | 10 FS`;
+  }
+  const bonusBuyBtn = document.getElementById("buyBonusBtn");
+  if (bonusBuyBtn) {
+    bonusBuyBtn.disabled = isSpinning || balance < bonusPrice;
+  }
+  updateJackpotPonDisplay();
+  const autoState = autoSpinsRemaining > 0 ? `вкл (${autoSpinsRemaining})` : "выкл";
+  document.getElementById("stats").textContent = `Спинов: ${spinCount} | Линий: ${PAYLINES.length} | Бонус: ${bonusSpinsRemaining} | Авто: ${autoState}`;
+  document.getElementById("auto10Btn").disabled = isSpinning || autoSpinsRemaining > 0;
+  document.getElementById("autoStopBtn").disabled = autoSpinsRemaining === 0;
+}
+
+function buyBonusGame() {
+  if (isSpinning) return;
+  const price = getBonusBuyPrice();
+  if (balance < price) {
+    document.getElementById("last-win").textContent = `Недостаточно средств для Бонуски Пон (${price.toLocaleString("ru-RU")} 💰)`;
+    return;
+  }
+  balance -= price;
+  bonusSpinsRemaining += BONUS_FREE_SPINS;
+  document.getElementById("last-win").textContent = `Бонуска Пон куплена: ${BONUS_FREE_SPINS} бесплатных вращений`;
+  updateUI();
+  saveState();
+  if (!isSpinning) {
+    setTimeout(() => spin(), 180);
+  }
+}
+
+function setBet(value) {
+  bet = Math.max(2, Math.min(2000, Math.floor(value)));
+  const wheelInput = document.getElementById("betWheel");
+  if (wheelInput && Number(wheelInput.value) !== bet) {
+    wheelInput.value = String(bet);
+  }
+  updateUI();
+}
+
+function changeBet(direction) {
+  setBet(bet + direction);
+}
+
+function formatTime() {
+  return new Date().toLocaleTimeString("ru-RU", { hour12: false });
+}
+
+function getRandomRoundId() {
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let id = "";
+  for (let i = 0; i < 12; i++) {
+    id += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return id;
+}
+
+function addToHistory(betTime, betAmt, winTime, winAmt, finalBal, roundId) {
+  const log = document.getElementById("historyLog");
+  const div = document.createElement("div");
+  div.style.marginBottom = "6px";
+  div.innerHTML = 
+    `${betTime} bet -${betAmt} | ` +
+    `${winTime} win +${winAmt} | ` +
+    `balance ${Math.floor(finalBal)} | ` +
+    `round ${roundId}`;
+  log.prepend(div);
+  while (log.children.length > HISTORY_LIMIT) {
+    log.removeChild(log.lastChild);
+  }
+}
+
+function renderPaytable() {
+  const body = document.getElementById("paytableBody");
+  body.innerHTML = "";
+  [...SYMBOLS].reverse().forEach(symbol => {
+    const tr = document.createElement("tr");
+    const tdSymbol = document.createElement("td");
+    tdSymbol.className = "symbol-cell";
+    tdSymbol.appendChild(createSymbolIcon(symbol.icon));
+    const name = document.createElement("span");
+    name.className = "symbol-name";
+    name.textContent = symbol.name;
+    tdSymbol.appendChild(name);
+
+    const td3 = document.createElement("td");
+    td3.textContent = `x${symbol.pays[3]}`;
+    const td4 = document.createElement("td");
+    td4.textContent = `x${symbol.pays[4]}`;
+    const td5 = document.createElement("td");
+    td5.textContent = `x${symbol.pays[5]}`;
+
+    tr.appendChild(tdSymbol);
+    tr.appendChild(td3);
+    tr.appendChild(td4);
+    tr.appendChild(td5);
+    body.appendChild(tr);
+  });
+
+  const lineList = document.getElementById("paylineList");
+  lineList.innerHTML = "";
+  PAYLINES.forEach((line, index) => {
+    const li = document.createElement("li");
+    li.textContent = `Линия ${index + 1}: ${line.map(row => row + 1).join("-")}`;
+    lineList.appendChild(li);
+  });
+}
+
+function toggleDrawer(name) {
+  const paytableDrawer = document.getElementById("paytableDrawer");
+  const historyDrawer = document.getElementById("historyDrawer");
+  const paytableBtn = document.getElementById("togglePaytableBtn");
+  const historyBtn = document.getElementById("toggleHistoryBtn");
+
+  if (name === "paytable") {
+    const willOpen = !paytableDrawer.classList.contains("open");
+    paytableDrawer.classList.toggle("open", willOpen);
+    historyDrawer.classList.remove("open");
+    paytableBtn.classList.toggle("active", willOpen);
+    historyBtn.classList.remove("active");
+  } else {
+    const willOpen = !historyDrawer.classList.contains("open");
+    historyDrawer.classList.toggle("open", willOpen);
+    paytableDrawer.classList.remove("open");
+    historyBtn.classList.toggle("active", willOpen);
+    paytableBtn.classList.remove("active");
+  }
+}
+
+function startAutoSpins(amount) {
+  if (isSpinning || autoSpinsRemaining > 0) return;
+  autoSpinsRemaining = amount;
+  document.getElementById("last-win").textContent = `Авто-режим: ${amount} спинов`;
+  updateUI();
+  spin();
+}
+
+function stopAutoSpins() {
+  autoSpinsRemaining = 0;
+  updateUI();
+}
+
+function resetProgress() {
+  if (isSpinning) return;
+  balance = 1000;
+  bet = 10;
+  spinCount = 0;
+  autoSpinsRemaining = 0;
+  bonusSpinsRemaining = 0;
+  document.getElementById("historyLog").innerHTML = "";
+  document.getElementById("last-win").textContent = "Прогресс сброшен. Нажми SPIN!";
+  setBet(10);
+  updateUI();
+  saveState();
+}
+
+function spin() {
+  const isFreeSpin = bonusSpinsRemaining > 0;
+  if (isSpinning || (!isFreeSpin && balance < bet)) {
+    if (!isFreeSpin && balance < bet) {
+      document.getElementById("last-win").textContent = "Недостаточно средств 😞";
+      stopAutoSpins();
+    }
+    return;
+  }
+
+  if (isFreeSpin) {
+    bonusSpinsRemaining = Math.max(0, bonusSpinsRemaining - 1);
+  }
+  isSpinning = true;
+  clearWinningHighlights();
+  playSpinClickSound();
+  document.getElementById("spinBtn").disabled = true;
+  document.getElementById("last-win").textContent = isFreeSpin
+    ? `Бонусный спин... Осталось: ${bonusSpinsRemaining}`
+    : "Барабаны крутятся...";
+
+  const roundId = getRandomRoundId();
+  const betTime = formatTime();
+  const betAmount = isFreeSpin ? 0 : bet;
+
+  if (!isFreeSpin) {
+    balance -= bet;
+  }
+  updateUI();
+
+  spinReels((finalGrid, spinMeta) => {
+    const lineResult = evaluatePaylines(finalGrid);
+    let totalWin = bet * lineResult.totalCoeff;
+    let ponJackpotWin = 0;
+
+    if (Math.random() < JACKPOT_PON_DROP_CHANCE) {
+      tickJackpotPon();
+      ponJackpotWin = Math.floor(jackpotPonValue);
+      jackpotPonValue = JACKPOT_PON_SEED;
+      jackpotPonLastTick = Date.now();
+      totalWin += ponJackpotWin;
+      updateJackpotPonDisplay();
+    }
+
+    balance += totalWin;
+
+    const winTime = formatTime();
+    const winAmount = totalWin;
+
+    addToHistory(betTime, betAmount, winTime, winAmount, balance, roundId);
+
+    let msg = totalWin > 0
+      ? `Линий: ${lineResult.hits.length} | x${lineResult.totalCoeff} | +${totalWin} 💰`
+      : "Пустой спин. Пробуем еще.";
+
+    if (spinMeta.isJackpotSpin) {
+      msg = `JACKPOT ${SYMBOL_MAP[JACKPOT_SYMBOL].name} x50000! Выигрыш: +${totalWin}`;
+    }
+    if (isFreeSpin) {
+      msg = totalWin > 0
+        ? `Бонусный спин: +${totalWin} 💰 | Осталось: ${bonusSpinsRemaining}`
+        : `Бонусный спин без выигрыша | Осталось: ${bonusSpinsRemaining}`;
+    }
+    if (ponJackpotWin > 0) {
+      msg = `ДЖЕКПОТ ПОН ВЫПАЛ! +${ponJackpotWin.toLocaleString("ru-RU")} 💰 | Итого: +${totalWin.toLocaleString("ru-RU")} 💰`;
+    }
+
+    highlightWinningCells(lineResult.hits);
+    renderWinningLines(lineResult.hits);
+
+    const totalMultiplier = totalWin / Math.max(1, bet);
+    if (totalMultiplier > 100) {
+      showBigWinAnimation(totalMultiplier);
+    }
+
+    document.getElementById("last-win").textContent = msg;
+    updateUI();
+    saveState();
+
+    document.getElementById("spinBtn").disabled = false;
+    isSpinning = false;
+
+    if (bonusSpinsRemaining > 0) {
+      updateUI();
+      setTimeout(() => spin(), 260);
+      return;
+    }
+
+    if (autoSpinsRemaining > 0) {
+      autoSpinsRemaining--;
+      updateUI();
+      if (autoSpinsRemaining > 0 && balance >= bet) {
+        setTimeout(() => spin(), 220);
+      } else {
+        autoSpinsRemaining = 0;
+        updateUI();
+      }
+    }
+  });
+}
+
+// Запуск
+createReels();
+loadState();
+setupBetWheel();
+setBet(bet);
+renderPaytable();
+updateUI();
+setInterval(() => {
+  tickJackpotPon();
+  updateJackpotPonDisplay();
+  saveState();
+}, 1000);
+document.addEventListener("keydown", (event) => {
+  if (event.code === "Space") {
+    event.preventDefault();
+    spin();
+  }
+});
+</script>
+</body>
+</html>
