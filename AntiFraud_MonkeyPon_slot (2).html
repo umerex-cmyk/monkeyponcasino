@@ -1070,6 +1070,19 @@
     .right-pack {
       justify-self: start;
       min-width: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .my-bet-info {
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 1px solid #4f6fb8;
+      background: rgba(27, 39, 72, 0.9);
+      color: #e7efff;
+      font-weight: 700;
+      white-space: nowrap;
     }
 
     .meta-row { display: none; }
@@ -1086,41 +1099,40 @@
     #bet-amount { display: none; }
     #last-win { display: none; }
 
-    .bet-controls {
+    .bet-wheel-control {
       display: flex;
-      flex-wrap: nowrap;
+      align-items: center;
       gap: 8px;
-      justify-content: flex-start;
-      margin: 0;
-      overflow-x: auto;
+      background: rgba(42, 44, 52, 0.9);
+      border: 1px solid #777e90;
+      border-radius: 12px;
+      padding: 6px 10px;
       min-width: 0;
     }
 
-    .bet-btn {
-      padding: 8px 14px;
-      font-size: 1rem;
-      background: #444;
-      color: white;
-      border: 1px solid #777;
-      border-radius: 10px;
-      cursor: pointer;
+    .bet-wheel-label {
+      font-size: 0.9rem;
+      color: #cfd8ef;
+      white-space: nowrap;
+      font-weight: 700;
     }
 
-    .bet-btn.active { background: #aa00ff; border-color: #ff44ff; }
+    .bet-wheel-input {
+      width: 92px;
+      padding: 6px 8px;
+      border: 1px solid #8d95ad;
+      border-radius: 9px;
+      background: #161b2b;
+      color: #f7fbff;
+      font-weight: 800;
+      font-size: 1rem;
+      text-align: center;
+      outline: none;
+    }
 
-    .bet-adjust {
-      padding: 8px 12px;
-      font-size: 1.2rem;
-      background: #555;
-      color: white;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      width: 42px;
-      height: 42px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .bet-wheel-input:focus {
+      border-color: #e6b959;
+      box-shadow: 0 0 0 2px rgba(230,185,89,0.22);
     }
 
     .spin-btn {
@@ -1259,7 +1271,7 @@
         justify-items: center;
       }
 
-      .bet-controls,
+      .bet-wheel-control,
       .drawer-controls {
         justify-content: center;
       }
@@ -1357,7 +1369,7 @@
 </head>
 <body>
 
-<div class="header">AntiFraud TOP 🛡️</div>
+<div class="header">МанкиПонСлот 🐵</div>
 <div class="jackpot-pon">
   <div class="jackpot-pon-left">
     <div class="jackpot-pon-title">Джекпот Пон</div>
@@ -1389,14 +1401,17 @@
             <div id="bet-amount">Ставка: 10</div>
           </div>
 
-          <div class="bet-controls">
-            <button class="bet-adjust" onclick="changeBet(-5)">−</button>
-            <button class="bet-btn" onclick="setBet(5)">5</button>
-            <button class="bet-btn active" onclick="setBet(10)">10</button>
-            <button class="bet-btn" onclick="setBet(25)">25</button>
-            <button class="bet-btn" onclick="setBet(50)">50</button>
-            <button class="bet-btn" onclick="setBet(100)">100</button>
-            <button class="bet-adjust" onclick="changeBet(10)">+</button>
+          <div class="bet-wheel-control">
+            <span class="bet-wheel-label">Ставка</span>
+            <input
+              id="betWheel"
+              class="bet-wheel-input"
+              type="number"
+              min="2"
+              max="2000"
+              step="1"
+              value="10"
+            />
           </div>
         </div>
         <button class="spin-btn" id="spinBtn" onclick="spin()">SPIN</button>
@@ -1409,6 +1424,7 @@
         <div id="stats">Спинов: 0 | Авто: выкл</div>
 
         <div class="right-pack">
+          <div class="my-bet-info" id="myBetInfo">Моя ставка: 10</div>
           <div class="drawer-controls">
             <button class="drawer-btn" id="togglePaytableBtn" onclick="toggleDrawer('paytable')">Линии выплат</button>
             <button class="drawer-btn" id="toggleHistoryBtn" onclick="toggleDrawer('history')">Журнал баланса</button>
@@ -1440,7 +1456,6 @@
           <ol class="payline-list" id="paylineList"></ol>
         </div>
       </div>
-      <div class="paytable-note">Джекпот: x50000 за 5 Королевских Горилл на линии. Шанс джекпот-спина: 0.01%.</div>
     </div>
   </div>
 
@@ -1488,18 +1503,65 @@ const SYMBOLS = [
   { icon: JACKPOT_SYMBOL, name: "Ванна", img: "monkey_atlas_cuts/monkey_08.png", weight: 1, pays: { 3: 50, 4: 5000, 5: 50000 } }
 ];
 
-const PAYLINES = [
-  [0, 0, 0, 0, 0, 0],
-  [1, 1, 1, 1, 1, 1],
-  [2, 2, 2, 2, 2, 2],
-  [0, 1, 2, 2, 1, 0],
-  [2, 1, 0, 0, 1, 2],
-  [0, 0, 1, 1, 2, 2],
-  [2, 2, 1, 1, 0, 0],
-  [1, 0, 0, 1, 2, 2],
-  [1, 2, 2, 1, 0, 0],
-  [0, 1, 1, 2, 1, 0]
-];
+function buildPaylines(target, cols, rows) {
+  const result = [];
+  const seen = new Set();
+  const add = (line) => {
+    const key = line.join("");
+    if (seen.has(key)) return;
+    seen.add(key);
+    result.push(line.slice());
+  };
+
+  // Базовые классические линии.
+  add([0, 0, 0, 0, 0, 0]);
+  add([1, 1, 1, 1, 1, 1]);
+  add([2, 2, 2, 2, 2, 2]);
+  add([0, 1, 2, 2, 1, 0]);
+  add([2, 1, 0, 0, 1, 2]);
+  add([0, 0, 1, 1, 2, 2]);
+  add([2, 2, 1, 1, 0, 0]);
+  add([1, 0, 0, 1, 2, 2]);
+  add([1, 2, 2, 1, 0, 0]);
+  add([0, 1, 1, 2, 1, 0]);
+
+  const generated = [];
+  const line = new Array(cols).fill(0);
+  const rec = (col) => {
+    if (col === cols) {
+      generated.push(line.slice());
+      return;
+    }
+    for (let row = 0; row < rows; row++) {
+      if (col > 0 && Math.abs(row - line[col - 1]) > 1) continue;
+      line[col] = row;
+      rec(col + 1);
+    }
+  };
+  rec(0);
+
+  generated.sort((a, b) => {
+    const turns = (arr) => {
+      let t = 0;
+      for (let i = 2; i < arr.length; i++) {
+        const d1 = arr[i - 1] - arr[i - 2];
+        const d2 = arr[i] - arr[i - 1];
+        if (d1 !== d2) t++;
+      }
+      return t;
+    };
+    const spread = (arr) => arr.reduce((acc, v) => acc + Math.abs(v - 1), 0);
+    return (turns(a) - turns(b)) || (spread(a) - spread(b));
+  });
+
+  for (const g of generated) {
+    if (result.length >= target) break;
+    add(g);
+  }
+  return result.slice(0, target);
+}
+
+const PAYLINES = buildPaylines(70, COLS, ROWS);
 
 const SYMBOL_MAP = Object.fromEntries(SYMBOLS.map(symbol => [symbol.icon, symbol]));
 
@@ -1619,7 +1681,7 @@ function loadState() {
     if (!raw) return;
     const state = JSON.parse(raw);
     if (typeof state.balance === "number") balance = Math.max(0, state.balance);
-    if (typeof state.bet === "number") bet = Math.max(5, Math.min(500, state.bet));
+    if (typeof state.bet === "number") bet = Math.max(2, Math.min(2000, state.bet));
     if (typeof state.spinCount === "number") spinCount = Math.max(0, state.spinCount);
     if (typeof state.bonusSpinsRemaining === "number") {
       bonusSpinsRemaining = Math.max(0, Math.floor(state.bonusSpinsRemaining));
@@ -1822,10 +1884,28 @@ function getBonusBuyPrice() {
   return bet * BONUS_BUY_MULTIPLIER;
 }
 
+function setupBetWheel() {
+  const wheelInput = document.getElementById("betWheel");
+  if (!wheelInput) return;
+
+  wheelInput.addEventListener("input", () => {
+    const value = Number(wheelInput.value);
+    if (Number.isFinite(value)) setBet(value);
+  });
+
+  wheelInput.addEventListener("wheel", (event) => {
+    event.preventDefault();
+    const delta = event.deltaY < 0 ? 1 : -1;
+    setBet(bet + delta);
+  }, { passive: false });
+}
+
 function updateUI() {
   tickJackpotPon();
   document.getElementById("balance").textContent = `Баланс: ${Math.floor(balance)} 💰`;
   document.getElementById("bet-amount").textContent = `Ставка за спин: ${bet}`;
+  const myBetInfo = document.getElementById("myBetInfo");
+  if (myBetInfo) myBetInfo.textContent = `Моя ставка: ${bet}`;
   const bonusPrice = getBonusBuyPrice();
   const bonusPriceEl = document.getElementById("bonusBuyPrice");
   if (bonusPriceEl) {
@@ -1860,16 +1940,16 @@ function buyBonusGame() {
 }
 
 function setBet(value) {
-  bet = Math.max(5, Math.min(500, value));
+  bet = Math.max(2, Math.min(2000, Math.floor(value)));
+  const wheelInput = document.getElementById("betWheel");
+  if (wheelInput && Number(wheelInput.value) !== bet) {
+    wheelInput.value = String(bet);
+  }
   updateUI();
-  document.querySelectorAll(".bet-btn").forEach(b => b.classList.remove("active"));
-  const btn = [...document.querySelectorAll(".bet-btn")].find(b => b.textContent == value);
-  if (btn) btn.classList.add("active");
 }
 
-function changeBet(delta) {
-  bet = Math.max(5, Math.min(500, bet + delta));
-  updateUI();
+function changeBet(direction) {
+  setBet(bet + direction);
 }
 
 function formatTime() {
@@ -2088,6 +2168,7 @@ function spin() {
 // Запуск
 createReels();
 loadState();
+setupBetWheel();
 setBet(bet);
 renderPaytable();
 updateUI();
